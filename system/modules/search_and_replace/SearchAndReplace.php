@@ -5,7 +5,7 @@
  *
  * @copyright  Lingo4you 2011
  * @author     Mario Müller <http://www.lingo4u.de/>
- * @package    SiteExport
+ * @package    SearchAndReplace
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 class SearchAndReplace extends Backend

@@ -479,7 +479,7 @@ class tl_search_and_replace_rules extends Backend
 	{
 		$arrSearchFields = unserialize($arrRow['search_table_fields']);
 
-		$return = $arrRow['title'] . ($arrRow['isRegex'] ? '' : ' [REGEX]') . ' <span style="color:silver">[' . $arrRow['search_table'] . ' (' . implode(',', $arrSearchFields) . ')]</span>';
+		$return = $arrRow['title'] . ($arrRow['isRegex'] ? ' [REGEX]' : '') . ' <span style="color:silver">[' . $arrRow['search_table'] . ' (' . implode(',', $arrSearchFields) . ')]</span>';
 
 		if ($arrRow['isActive'] == '1')
 		{
