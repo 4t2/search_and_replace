@@ -94,16 +94,13 @@ class SearchAndReplace extends Backend
 
 		if (count($this->arrPages))
 		{
-			if ($this->Input->get('step') == 'go')
-			{
-				// Get the site export data
-				$objReplaceRules = $this->Database->prepare("SELECT * FROM tl_search_and_replace_rules WHERE pid=? AND isActive='1' ORDER BY `sorting`")
-					->execute($dc->id);
+			// Get all rules
+			$objReplaceRules = $this->Database->prepare("SELECT * FROM tl_search_and_replace_rules WHERE pid=? AND isActive='1' ORDER BY `sorting`")
+				->execute($dc->id);
 
-				if ($objReplaceRules->numRows > 0)
-				{
-					$this->replaceRules = $objReplaceRules->fetchAllAssoc();
-				}
+			if ($objReplaceRules->numRows > 0)
+			{
+				$this->replaceRules = $objReplaceRules->fetchAllAssoc();
 			}
 
 			$lastLevel = 0;
@@ -113,7 +110,7 @@ class SearchAndReplace extends Backend
 			{
 				if ($page['level'] > $lastLevel)
 				{
-					$html .= str_pad('<ul>', 4*($page['level']-$lastLevel), '<ul>');
+					$html .= str_pad('<ul style="padding-left:2em">', 4*($page['level']-$lastLevel), '<ul>');
 				}
 				elseif ($page['level'] < $lastLevel)
 				{
@@ -126,15 +123,22 @@ class SearchAndReplace extends Backend
 				
 				$lastLevel = $page['level'];
 
-				if ($this->Input->get('step') == 'go')
+				$msg = $this->processRules($page['id'], ($this->Input->get('step') == 'go'));
+
+				if (strlen(trim($msg)) > 0)
 				{
-					$msg = $this->processRules($page['id']);
-#					$html .= '<li>' . $page['title'] . ' (' . var_export($msg, true) . ')';
-					$html .= '<li>' . $page['title'] . ' :: ' . $msg;
+					if ($this->Input->get('step') == 'go')
+					{
+						$html .= '<li style="color:#444"><strong>' . $page['title'] . ' :: <span style="color:#484">' . $msg . '</span></strong>';
+					}
+					else
+					{
+						$html .= '<li style="color:#444"><strong>' . $page['title'] . ' :: <span style="color:#448">' . $msg . '</span></strong>';
+					}
 				}
 				else
 				{
-					$html .= '<li>' . $page['title'] .'';
+					$html .= '<li style="color:#888">' . $page['title'];
 				}
 			}
 
@@ -158,7 +162,7 @@ class SearchAndReplace extends Backend
 	}
 
 
-	protected function processRules($pageId)
+	protected function processRules($pageId, $saveChanges = false)
 	{
 		$arrCache = array();
 		$arrCacheOrg = array();
@@ -222,7 +226,7 @@ class SearchAndReplace extends Backend
 		foreach ($arrCache as $strTable => $arrTable)
 		{
 			$count = 0;
-			
+
 			$this->loadDataContainer($strTable);
 
 			for ($r=0; $r<count($arrTable); $r++)
@@ -241,11 +245,12 @@ class SearchAndReplace extends Backend
 				{
 					$count++;
 
-					$this->createInitialVersion($strTable, $arrTable[$r]['id']);
-
-					$this->Database->prepare("UPDATE `".$strTable."` %s WHERE `id`=?")->set($arrParams)->execute($arrTable[$r]['id']);
-
-					$this->createNewVersion($strTable, $arrTable[$r]['id']);
+					if ($saveChanges)
+					{
+						$this->createInitialVersion($strTable, $arrTable[$r]['id']);
+						$this->Database->prepare("UPDATE `".$strTable."` %s WHERE `id`=?")->set($arrParams)->execute($arrTable[$r]['id']);
+						$this->createNewVersion($strTable, $arrTable[$r]['id']);
+					}
 				}
 			}
 			
@@ -254,9 +259,8 @@ class SearchAndReplace extends Backend
 				$msg .= $strTable . ' (' . $count . ') ';
 			}
 		}
-#die(var_export($arrCache, true));
+
 		return $msg;
-		return count($arrCache['tl_page']).','.count($arrCache['tl_article']).','.count($arrCache['tl_content']);
 	}
 
 	protected function getTablePages($pageId)
@@ -277,13 +281,16 @@ class SearchAndReplace extends Backend
 
 	protected function applyRule($value, $rule, $fieldIndex)
 	{
-		#if (array_key_exists($field, $GLOBALS['SEARCH_AND_REPLACE']['SERIALIZED']))
 		if ($fieldIndex !== false)
 		{
-			$value = deserialize($value);
-			$str = $value[$fieldIndex];
-			#$str = $value[$GLOBALS['SEARCH_AND_REPLACE']['SERIALIZED'][$field]];
-			
+			$arrValue = deserialize($value);
+
+			if (!isset($arrValue[$fieldIndex]))
+			{
+				return $value;
+			}
+
+			$str = $arrValue[$fieldIndex];
 		}
 		else
 		{
@@ -310,17 +317,19 @@ class SearchAndReplace extends Backend
 		{
 			$str = $rule['replacement'];
 		}
+		elseif ($rule['ignoreCase'] == '1')
+		{
+			$str = str_ireplace($rule['pattern'], $rule['replacement'], $str);
+		}
 		else
 		{
 			$str = str_replace($rule['pattern'], $rule['replacement'], $str);
 		}
 
-		#if (array_key_exists($field, $GLOBALS['SEARCH_AND_REPLACE']['SERIALIZED']))
 		if ($fieldIndex !== false)
 		{
-			#$value[$GLOBALS['SEARCH_AND_REPLACE']['SERIALIZED'][$field]] = $str;
-			$value[$fieldIndex] = $str;
-			$value = serialize($value);
+			$arrValue[$fieldIndex] = $str;
+			$value = serialize($arrValue);
 		}
 		else
 		{

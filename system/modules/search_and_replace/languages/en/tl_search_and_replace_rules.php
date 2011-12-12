@@ -27,11 +27,12 @@ $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['search_table_fields'] = arra
 /* to do */
 
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['hasPattern'] = array('Search pattern', 'Es wird nach einem Ausdruck gesucht und dieser ersetzt.');
+$GLOBALS['TL_LANG']['tl_search_and_replace_rules']['ignoreCase'] = array('Case-insensitive', 'Case-insensitive search.');
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['pattern'] = array('Search pattern', 'Zu suchender Ausdruck. Bei regulären Ausdrücken ohne Begrenzer und Modifikator.');
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['replacement'] = array('Replacement', 'Zu ersetzender Ausdruck.');
 
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['isRegex'] = array('Handle as regular expression', 'Die Regel ist ein Regulärer Ausdruck.');
-$GLOBALS['TL_LANG']['tl_search_and_replace_rules']['modIgnoreCase'] = array('Modificator i', 'Groß- und Kleinschreibung ignorieren.');
+$GLOBALS['TL_LANG']['tl_search_and_replace_rules']['modIgnoreCase'] = array('Modificator i', 'Case-insensitive.');
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['modMultiLine'] = array('Modificator m', 'Zeilenumbrüche ignorieren.');
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['modDotAll'] = array('Modificator s', 'Punkt umfasst alle Zeichen.');
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['modUngreedy'] = array('Modificator U', 'Gier von Quantifikatoren umkehren.');

@@ -94,7 +94,7 @@ $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 	// Subpalettes
 	'subpalettes' => array
 	(
-		'hasPattern'				=> 'pattern',
+		'hasPattern'				=> 'ignoreCase,pattern',
 		'isRegex'                   => 'modIgnoreCase,modMultiLine,modDotAll,modUngreedy,modUTF8'
 	),
 
@@ -135,6 +135,7 @@ $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 			'eval'                    => array
 			(
 				'includeBlankOption'	=> false,
+				'mandatory' 			=> true,
 				'multiple'				=> true,
 				'tl_class'				=> ''
 			)
@@ -145,7 +146,18 @@ $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 			'exclude'				=> true,
 			'inputType'				=> 'checkbox',
 			'default'				=> 1,
-			'eval'					=> array('submitOnChange'=>true)
+			'eval'					=> array(
+				'submitOnChange'	=>true,
+				'tl_class'			=>'w50'
+			)
+		),
+		'ignoreCase' => array
+		(
+			'label'			=> &$GLOBALS['TL_LANG']['tl_search_and_replace_rules']['ignoreCase'],
+			'exclude'		=> true,
+			'default'		=> 1,
+			'inputType'		=> 'checkbox',
+			'eval'          => array('tl_class'=>'w50')
 		),
 		'pattern' => array
 		(
@@ -178,7 +190,8 @@ $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 				'allowHtml'		=> true,
 				'preserveTags'	=> true,
 				'decodeEntities'=> false,
-				'style'			=> 'height:auto'
+				'style'			=> 'height:auto',
+				'tl_class'		=> 'clr'
 			)
 		),
 		'isRegex' => array

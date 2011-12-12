@@ -25,6 +25,7 @@ $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['search_table']['reference'] 
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['search_table_fields'] = array('Tabellenfelder', 'In welchen Feldern soll gesucht und ersetzt werden?');
 
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['hasPattern'] = array('Nach Ausdruck suchen', 'Es wird nach einem Ausdruck gesucht und dieser ersetzt.');
+$GLOBALS['TL_LANG']['tl_search_and_replace_rules']['ignoreCase'] = array('Groß- und Kleinschreibung ignorieren', 'Groß- und Kleinschreibung bei der Suche ignorieren.');
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['pattern'] = array('Suchmuster', 'Zu suchender Ausdruck. Bei regulären Ausdrücken ohne Begrenzer und Modifikator.');
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['replacement'] = array('Ersetzungsausdruck', 'Zu ersetzender Ausdruck.');
 

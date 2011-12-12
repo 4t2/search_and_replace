@@ -25,6 +25,7 @@ CREATE TABLE `tl_search_and_replace_rules` (
   `search_table` varchar(255) NOT NULL default 'tl_content',
   `search_table_fields` varchar(255) NOT NULL default '',
   `hasPattern` char(1) NOT NULL default '1',
+  `ignoreCase` char(1) NOT NULL default '',
   `pattern` mediumtext NULL,
   `replacement` mediumtext NULL,
   `isRegex` char(1) NOT NULL default '',
