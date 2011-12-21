@@ -15,6 +15,7 @@ $GLOBALS['TL_LANG']['tl_search_and_replace']['pages'] = array('Sites', 'Please c
 $GLOBALS['TL_LANG']['tl_search_and_replace']['recursive'] = array('List sites recursive', 'Choose all child pages.');
 
 $GLOBALS['TL_LANG']['tl_search_and_replace']['tstamp']    = array('Time', 'Time and date.');
+$GLOBALS['TL_LANG']['tl_search_and_replace']['lastMessage']    = array('Last action', 'Last action.');
 
 /**
  * Buttons

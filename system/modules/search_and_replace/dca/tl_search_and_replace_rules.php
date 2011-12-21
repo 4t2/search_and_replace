@@ -28,7 +28,7 @@ $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 			'mode'                    => 4,
 			'fields'                  => array('sorting', 'id'),
 			'panelLayout'             => 'filter;sort,search,limit',
-			'headerFields'            => array('title', 'tstamp'),
+			'headerFields'            => array('title', 'tstamp', 'lastMessage'),
 			'child_record_callback'   => array('tl_search_and_replace_rules', 'listRules')
 		),
 		'global_operations' => array

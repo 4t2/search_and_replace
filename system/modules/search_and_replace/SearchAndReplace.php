@@ -146,6 +146,8 @@ class SearchAndReplace extends Backend
 			
 			if ($this->Input->get('step') == 'go')
 			{
+				$this->Database->prepare("UPDATE tl_search_and_replace SET `lastMessage`=NOW() WHERE id=?")->execute($dc->id);
+
 				$this->log('SearchAndReplace ID '.$dc->id.': '.count($this->arrPages).' pages saved', 'SearchAndReplace', TL_GENERAL);
 			}
 			

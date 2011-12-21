@@ -5,7 +5,7 @@
 CREATE TABLE `tl_search_and_replace` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `tstamp` int(10) unsigned NOT NULL default '0',
-  `sorting` int(10) unsigned NOT NULL default '0',
+  `lastMessage` varchar(255) NOT NULL default '',
   `title` varchar(255) NOT NULL default '',
   `pages` blob NULL,
   `recursive` char(1) NOT NULL default '',

@@ -14,7 +14,8 @@ $GLOBALS['TL_LANG']['tl_search_and_replace']['title'] = array('Titel', 'Bitte ge
 $GLOBALS['TL_LANG']['tl_search_and_replace']['pages'] = array('Seiten', 'Alle Seiten auswählen, in denen gesucht werden soll.');
 $GLOBALS['TL_LANG']['tl_search_and_replace']['recursive'] = array('Unterseiten automatisch einbeziehen', 'Alle Unterseiten von ausgewählten Seiten mit einbeziehen.');
 
-$GLOBALS['TL_LANG']['tl_search_and_replace']['tstamp']    = array('Zeit', 'Zeit und Datum der letzten Bearbeitung.');
+$GLOBALS['TL_LANG']['tl_search_and_replace']['tstamp']    = array('Änderungsdatum', 'Zeit und Datum der letzten Bearbeitung.');
+$GLOBALS['TL_LANG']['tl_search_and_replace']['lastMessage']    = array('Ausgeführt', 'Zeit und Datum der letzten Ausführung.');
 
 /**
  * Buttons
