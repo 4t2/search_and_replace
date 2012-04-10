@@ -88,7 +88,7 @@ $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 	'palettes' => array
 	(
 		'__selector__'                => array('hasPattern', 'isRegex'),
-		'default'                     => '{title_legend},title;{table_legend},search_table,search_table_fields;{rules_legend},hasPattern,replacement;{regex_legend},isRegex;{apply_legend},isActive'
+		'default'                     => '{title_legend},title,isActive;{table_legend},search_table,search_table_fields;{rules_legend},hasPattern,replacement;{regex_legend},isRegex'
 	),
 	
 	// Subpalettes
@@ -107,21 +107,27 @@ $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 			'search'                  => true,
 			'exclude'                 => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'decodeEntities'=>true, 'maxlength'=>255)
+			'eval'                    => array
+			(
+				'mandatory'			=> true,
+				'decodeEntities'	=> true,
+				'maxlength'			=> 255,
+				'tl_class'			=> 'w50'
+			)
 		),
 		'search_table' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_search_and_replace_rules']['search_table']['title'],
 			'search'                  => true,
 			'exclude'                 => true,
-			'inputType'               => 'select',
+			'inputType'               => 'radio',
 			'options'				  => array_keys($GLOBALS['SEARCH_AND_REPLACE']['TABLES']),
 			'reference'				  => &$GLOBALS['TL_LANG']['tl_search_and_replace_rules']['search_table']['reference'],
 			'eval'                    => array
 			(
 				'includeBlankOption'	=> false,
 				'maxlength'				=> 255,
-				'tl_class'				=> '',
+				'tl_class'				=> 'w50',
 				'submitOnChange'		=> true
 			)
 		),
@@ -137,7 +143,7 @@ $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 				'includeBlankOption'	=> false,
 				'mandatory' 			=> true,
 				'multiple'				=> true,
-				'tl_class'				=> ''
+				'tl_class'				=> 'w50 bigField'
 			)
 		),
 		'hasPattern' => array
@@ -245,7 +251,7 @@ $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 			'label'			=> &$GLOBALS['TL_LANG']['tl_search_and_replace_rules']['isActive'],
 			'exclude'		=> true,
 			'inputType'		=> 'checkbox',
-			'eval'          => array('tl_class'=>'w50')
+			'eval'          => array('tl_class'=>'w50 m12')
 		)
 	)
 
@@ -491,7 +497,7 @@ class tl_search_and_replace_rules extends Backend
 	public function listRules($arrRow)
 	{
 		$arrSearchFields = unserialize($arrRow['search_table_fields']);
-
+#		$return = $arrSearchFields;
 		$return = $arrRow['title'] . ($arrRow['isRegex'] ? ' [REGEX]' : '') . ' <span style="color:silver">[' . $arrRow['search_table'] . ' (' . implode(',', $arrSearchFields) . ')]</span>';
 
 		if ($arrRow['isActive'] == '1')
@@ -505,11 +511,5 @@ class tl_search_and_replace_rules extends Backend
 	}
 
 }
-
-
-
-
-
-
 
 ?>
