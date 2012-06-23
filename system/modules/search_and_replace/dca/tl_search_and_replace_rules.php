@@ -1,10 +1,32 @@
 <?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
 
-
-
 /**
- * Table tl_search_and_replace_rules
+ * Contao Open Source CMS
+ * Copyright (C) 2005-2012 Leo Feyer
+ *
+ * Formerly known as TYPOlight Open Source CMS.
+ *
+ * This program is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this program. If not, please visit the Free
+ * Software Foundation website at <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5
+ * @copyright  Lingo4you 2012
+ * @author     Mario Müller <http://www.lingo4u.de/>
+ * @package    Search and Replace
+ * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
+
 $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 (
 
@@ -276,28 +298,38 @@ class tl_search_and_replace_rules extends Backend
 
 	public function getTableFields(DataContainer $dc)
 	{
-		$arrTable = $GLOBALS['SEARCH_AND_REPLACE']['TABLES'][$dc->activeRecord->search_table];
+		$strTable = $dc->activeRecord->search_table;
+		$arrTable = $GLOBALS['SEARCH_AND_REPLACE']['TABLES'][$strTable];
 		$arrSerialized = $GLOBALS['SEARCH_AND_REPLACE']['SERIALIZED'];
 
 		$fields = array_intersect(
-			$this->Database->getFieldNames($dc->activeRecord->search_table),
+			$this->Database->getFieldNames($strTable),
 			$arrTable
 		);
+
+		if (file_exists(TL_ROOT . '/system/modules/backend/languages/'.$GLOBALS['TL_LANGUAGE'].'/'.$strTable.'.php'))
+		{
+			include_once(TL_ROOT . '/system/modules/backend/languages/'.$GLOBALS['TL_LANGUAGE'].'/'.$strTable.'.php');
+		}
 
 		$arrFields = array();
 		
 		foreach ($fields as $field)
 		{
+			$fieldTitle = isset($GLOBALS['TL_LANG'][$strTable][$field][0]) ? $GLOBALS['TL_LANG'][$strTable][$field][0] : $field;
+
 			if (isset($arrSerialized[$field]))
 			{
+				$arrFieldTitle = explode('/', $fieldTitle);
+
 				foreach ($arrSerialized[$field] as $fieldIndex)
 				{
-					$arrFields[$field.':'.$fieldIndex] = $field . ' [' . $fieldIndex . ']';
+					$arrFields[$field.':'.$fieldIndex] = isset($arrFieldTitle[$fieldIndex]) ? $arrFieldTitle[$fieldIndex] : $fieldTitle . ' [' . $fieldIndex . ']';
 				}
 			}
 			else
 			{
-				$arrFields[$field] = $field;
+				$arrFields[$field] = $fieldTitle;
 			}
 		}
 		
@@ -511,5 +543,3 @@ class tl_search_and_replace_rules extends Backend
 	}
 
 }
-
-?>

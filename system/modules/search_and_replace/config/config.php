@@ -17,6 +17,9 @@ $GLOBALS['SEARCH_AND_REPLACE']['TABLES'] = array
 	(
 		'headline',
 		'text',
+		'alt',
+		'title',
+		'caption',
 		'cssID',
 		'invisible'
 	),
