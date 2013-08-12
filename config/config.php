@@ -6,8 +6,8 @@
 $GLOBALS['BE_MOD']['batch']['search_and_replace'] = array
 (
 		'tables'     => array('tl_search_and_replace', 'tl_search_and_replace_rules'),
-		'icon'       => 'system/modules/search_and_replace/html/images/magnifier.png',
-		'stylesheet' => 'system/modules/search_and_replace/html/css/search_and_replace.css',
+		'icon'       => 'system/modules/search_and_replace/assets/images/magnifier.png',
+		'stylesheet' => 'system/modules/search_and_replace/assets/styles/search_and_replace.css',
 		'replace' 	 => array('SearchAndReplace', 'replace')
 );
 
