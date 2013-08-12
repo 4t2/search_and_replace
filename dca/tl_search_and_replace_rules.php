@@ -281,7 +281,7 @@ $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 
 
 /**
- * Class tl_lingo_wordlist
+ * Class tl_search_and_replace_rules
  */
 class tl_search_and_replace_rules extends Backend
 {

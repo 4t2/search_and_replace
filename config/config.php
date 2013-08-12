@@ -3,7 +3,7 @@
 /**
  * Back end modules
  */
-$GLOBALS['BE_MOD']['system']['search_and_replace'] = array
+$GLOBALS['BE_MOD']['batch']['search_and_replace'] = array
 (
 		'tables'     => array('tl_search_and_replace', 'tl_search_and_replace_rules'),
 		'icon'       => 'system/modules/search_and_replace/html/images/magnifier.png',
@@ -20,6 +20,7 @@ $GLOBALS['SEARCH_AND_REPLACE']['TABLES'] = array
 		'alt',
 		'title',
 		'caption',
+		'singleSRC',
 		'cssID',
 		'invisible'
 	),

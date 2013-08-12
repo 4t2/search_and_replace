@@ -12,6 +12,5 @@
 /**
  * Back end modules
  */
+$GLOBALS['TL_LANG']['MOD']['batch'] = array('Stapelverarbeitung', 'Stapelverarbeitung');
 $GLOBALS['TL_LANG']['MOD']['search_and_replace'] = array('Suchen & Ersetzen', 'Suchen & Ersetzen in Seiten, Artikeln und Inhalten');
-
-?>

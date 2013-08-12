@@ -104,7 +104,7 @@ $GLOBALS['TL_DCA']['tl_search_and_replace'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_search_and_replace']['replace'],
 				'href'                => 'key=replace&amp;step=preview',
-				'icon'                => 'system/modules/search_and_replace/html/images/cog_go.png'
+				'icon'                => 'system/modules/search_and_replace/assets/images/cog_go.png'
 			)
 		)
 	),
@@ -139,6 +139,7 @@ $GLOBALS['TL_DCA']['tl_search_and_replace'] = array
 			'inputType'               => 'pageTree',
 			'eval'                    => array(
 				'mandatory' => false,
+				'multiple' => true,
 				'fieldType'=>'checkbox'
 			)
 		),
@@ -156,7 +157,7 @@ $GLOBALS['TL_DCA']['tl_search_and_replace'] = array
 
 
 /**
- * Class tl_lingo_wordlist_topic
+ * Class tl_search_and_replace
  */
 class tl_search_and_replace extends Backend
 {

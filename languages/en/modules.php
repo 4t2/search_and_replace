@@ -12,6 +12,5 @@
 /**
  * Back end modules
  */
+$GLOBALS['TL_LANG']['MOD']['batch'] = array('Batch processing', 'Batch processing');
 $GLOBALS['TL_LANG']['MOD']['search_and_replace'] = array('Search & Replace', 'Search & replace on sites, articles and content elements');
-
-?>
