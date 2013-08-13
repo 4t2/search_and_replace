@@ -3,12 +3,12 @@
 /**
  * Class SearchAndReplace
  *
- * @copyright  Lingo4you 2011
- * @author     Mario Müller <http://www.lingo4u.de/>
+ * @copyright  Lingo4you 2013
+ * @author     Mario Müller <http://www.lingolia.com/>
  * @package    SearchAndReplace
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
-class SearchAndReplace extends Backend
+class SearchAndReplace extends \Backend
 {
 	protected $arrPages = array();
 	protected $pageList = array();
@@ -20,7 +20,7 @@ class SearchAndReplace extends Backend
 	 * Export a theme
 	 * @param object
 	 */
-	public function replace(DataContainer $dc)
+	public function replace($dc)
 	{
 		global $objPage;
 		
