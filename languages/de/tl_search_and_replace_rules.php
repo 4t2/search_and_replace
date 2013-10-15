@@ -17,11 +17,13 @@ $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['title'] = array('Titel', 'Bi
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['search_table']['title'] = array('Tabelle', 'In welcher Tabelle soll gesucht und ersetzt werden?');
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['search_table']['reference'] = array
 (
-	'tl_content' => 'Inhaltselemente',
-	'tl_article' => 'Artikel',
-	'tl_page' => 'Seitenstruktur',
-	'tl_module' => 'Module (alle)',
-	'tl_news' => 'Nachrichten'
+	'tl_content' => 'Inhaltselemente [tl_content]',
+	'tl_article' => 'Artikel [tl_article]',
+	'tl_page' => 'Seitenstruktur [tl_page]',
+	'tl_module' => 'Module (alle) [tl_module]',
+	'tl_news' => 'Nachrichten [tl_news]',
+	'tl_glossary_term' => 'Glossar Term [tl_glossary_term]',
+	'tl_comments' => 'Kommentare [tl_comments]'
 );
 $GLOBALS['TL_LANG']['tl_search_and_replace_rules']['search_table_fields'] = array('Tabellenfelder', 'In welchen Feldern soll gesucht und ersetzt werden?');
 

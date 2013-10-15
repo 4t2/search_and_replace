@@ -35,6 +35,3 @@ $GLOBALS['TL_LANG']['tl_search_and_replace']['fe']['site_preview'] = 'Vorschau d
 $GLOBALS['TL_LANG']['tl_search_and_replace']['fe']['replace_done'] = 'Suchen und Ersetzen durchgeführt.';
 
 $GLOBALS['TL_LANG']['tl_search_and_replace']['fe']['run'] = array('Suchen &amp; Ersetzen starten', 'Suchen &amp; Ersetzen in allen angezeigten Seiten starten.');
-
-
-?>

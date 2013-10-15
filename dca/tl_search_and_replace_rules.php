@@ -21,8 +21,8 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Lingo4you 2012
- * @author     Mario Müller <http://www.lingo4u.de/>
+ * @copyright  Lingo4you 2013
+ * @author     Mario Müller <http://www.lingolia.com/>
  * @package    Search and Replace
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
@@ -143,7 +143,8 @@ $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 			'search'                  => true,
 			'exclude'                 => true,
 			'inputType'               => 'radio',
-			'options'				  => array_keys($GLOBALS['SEARCH_AND_REPLACE']['TABLES']),
+#			'options'				  => array_keys($GLOBALS['SEARCH_AND_REPLACE']['TABLES']),
+			'options_callback'		  => array('tl_search_and_replace_rules', 'getTableNames'),
 			'reference'				  => &$GLOBALS['TL_LANG']['tl_search_and_replace_rules']['search_table']['reference'],
 			'eval'                    => array
 			(
@@ -283,7 +284,7 @@ $GLOBALS['TL_DCA']['tl_search_and_replace_rules'] = array
 /**
  * Class tl_search_and_replace_rules
  */
-class tl_search_and_replace_rules extends Backend
+class tl_search_and_replace_rules extends \Backend
 {
 
 	/**
@@ -296,7 +297,12 @@ class tl_search_and_replace_rules extends Backend
 	}
 
 
-	public function getTableFields(DataContainer $dc)
+	public function getTableNames($dc)
+	{
+		return array_intersect(array_keys($GLOBALS['SEARCH_AND_REPLACE']['TABLES']), array_values($this->Database->listTables()));
+	}
+
+	public function getTableFields($dc)
 	{
 		$strTable = $dc->activeRecord->search_table;
 		$arrTable = $GLOBALS['SEARCH_AND_REPLACE']['TABLES'][$strTable];
@@ -307,10 +313,7 @@ class tl_search_and_replace_rules extends Backend
 			$arrTable
 		);
 
-		if (file_exists(TL_ROOT . '/system/modules/backend/languages/'.$GLOBALS['TL_LANGUAGE'].'/'.$strTable.'.php'))
-		{
-			include_once(TL_ROOT . '/system/modules/backend/languages/'.$GLOBALS['TL_LANGUAGE'].'/'.$strTable.'.php');
-		}
+		$this->loadLanguageFile($strTable);
 
 		$arrFields = array();
 		

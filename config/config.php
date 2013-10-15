@@ -41,6 +41,19 @@ $GLOBALS['SEARCH_AND_REPLACE']['TABLES'] = array
 		'language',
 		'description',
 		'published'
+	),
+	'tl_comments' => array
+	(
+		'comment',
+		'name',
+		'email',
+		'website'
+	),
+	'tl_glossary_term' => array
+	(
+		'term',
+		'definition',
+		'example'
 	)
 );
 
@@ -51,5 +64,3 @@ $GLOBALS['SEARCH_AND_REPLACE']['SERIALIZED'] = array
 	'cssID' => array(0, 1),
 	'space' => array(0, 1)
 );
-
-?>
